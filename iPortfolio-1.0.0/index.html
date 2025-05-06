@@ -291,9 +291,11 @@
             <li>Handling Dynamic Features with AWS Lambda + API Gateway
                 For the "Rate My Website" feature, I needed a backend to handle form submissions (such as saving ratings to a database). Instead of running a traditional server (like EC2), I opted for AWS Lambda and API Gateway in the UK region (eu-west-2).
                 
-                AWS Lambda: I created a Lambda function to handle form submissions. This function processes ratings submitted by users (e.g., a 1-5 star rating) and stores them in a database.
+                AWS Lambda: I created a Lambda function to handle form submissions. This function processes ratings submitted by users (e.g., a 1-10 rating) and stores them in a database.
                 
-                API Gateway: I set up API Gateway in the UK region to expose a RESTful endpoint that the front-end form can call to submit ratings to the Lambda function.
+                HTTP API: To expose the Lambda function to the web, I used an HTTP API via API Gateway. This provides a simple, cost-effective way to integrate HTTP requests with AWS Lambda, allowing users to submit ratings via a RESTful API endpoint.
+                
+                API Gateway: I set up API Gateway in the UK region to expose a RESTful endpoint for the front-end form to call, triggering the Lambda function that processes the ratings.
                 
                 Cost: Since my site expects only a few hundred form submissions, Lambda and API Gateway will most likely stay within the free tier of AWS, which includes 1 million requests per month for Lambda and 1 million requests per month for API Gateway. Therefore, the backend costs should be negligible for the first few months.
             </li>
@@ -321,7 +323,7 @@
                 
                 Static Website: Hosted on S3 in the London region with CloudFront for better performance.
                 
-                Backend: Form submissions handled by AWS Lambda and API Gateway.
+                Backend: Form submissions handled by AWS Lambda and API Gateway using HTTP API.
                 
                 Database: DynamoDB (or RDS, if needed) to store the ratings.
                 
@@ -359,10 +361,10 @@
                 
                 Scalability if traffic grows over time.
                 
-                By using Amazon S3 for static content, AWS Lambda + API Gateway for handling form submissions, DynamoDB for storing ratings, and GitHub Actions for CI/CD, I have a highly flexible and cost-efficient infrastructure.
+                By using Amazon S3 for static content, AWS Lambda + API Gateway (HTTP API) for handling form submissions, DynamoDB for storing ratings, and GitHub Actions for CI/CD, I have a highly flexible and cost-efficient infrastructure.
             </li>
         </ol>
-    </div>
+    </div>        
     
     <!-- End Section Title -->
 
