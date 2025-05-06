@@ -246,47 +246,6 @@ h6 {
   background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
 }
 
-/* Original styles for small screen navigation */
-@media (max-width: 1199.98px) {
-  #navmenu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 250px;
-    background-color: #fff;
-    padding: 2rem 1rem;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 9998;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Show the menu when the 'show' class is added */
-  #navmenu.show {
-    transform: translateX(0);
-  }
-
-  /* Style the mobile toggle button */
-  .header-toggle {
-    font-size: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    background: red;
-    color: white;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-}
-
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
