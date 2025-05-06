@@ -263,95 +263,108 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Portfolio</h2>
-        <p>For this project, I built a simple website with a "Rate My Website" form, where users can submit ratings. Since I expect only a few hundred visitors in the first week, with significantly lower traffic afterward, I opted for a cost-effective, scalable solution hosted on AWS in the UK region (London – eu-west-2) to ensure good performance for UK-based users and compliance with local regulations.</p>
-          <br>
-          <p>Here’s the step-by-step breakdown:</p>
-          <ol>
-          <br>
-          <li>Buying a Domain Name
-          To give my website a professional and local feel, I purchased a custom domain name. For this, I used AWS Route 53 as my domain registrar.
-          
-          Domain Registration: I chose a UK-friendly domain (like .co.uk, .com, or another regional domain) to target UK users more effectively.
-          
-          DNS Management: AWS Route 53 provides an easy way to manage DNS and configure my domain to work with AWS-hosted services.
-          
-          SSL Certificates: I also used AWS Certificate Manager to provision an SSL certificate for my domain to ensure my website is secure and trusted by users (especially since I’m handling form submissions).
-          </li>
-          <br>
-          <li>Hosting Static Content with Amazon S3 (UK Region)
-          Since my website consists of static content (HTML, CSS, and JavaScript), I chose to host it on Amazon S3, which is both cost-effective and scalable for small to medium traffic websites.
-          
-          S3 Bucket Setup: I created an S3 bucket in the London region (eu-west-2) to host my static website files. I uploaded my HTML, CSS, and JavaScript files to the bucket and configured it to serve the website publicly.
-          
-          CloudFront (Optional): Although optional, I decided to use CloudFront to deliver my content globally. This ensures faster content delivery across the UK and Europe by caching files at edge locations closer to users.
-          
-          Cost: Hosting a small website (around 10MB) should cost under £1/month for S3 storage and data transfer, which is extremely affordable for the first few months.
-          </li>
-          <br>
-          <li>Handling Dynamic Features with AWS Lambda + API Gateway
-          For the "Rate My Website" feature, I needed a backend to handle form submissions (such as saving ratings to a database). Instead of running a traditional server (like EC2), I opted for AWS Lambda and API Gateway in the UK region (eu-west-2).
-          
-          AWS Lambda: I created a Lambda function to handle form submissions. This function processes ratings submitted by users (e.g., a 1-5 star rating) and stores them in a database.
-          
-          API Gateway: I set up API Gateway in the UK region to expose a RESTful endpoint that the front-end form can call to submit ratings to the Lambda function.
-          
-          Cost: Since my site expects only a few hundred form submissions, Lambda and API Gateway will most likely stay within the free tier of AWS, which includes 1 million requests per month for Lambda and 1 million requests per month for API Gateway. Therefore, the backend costs should be negligible for the first few months.
-          </li>
-          <br>
-          <li>Storing Form Submissions in a Database (DynamoDB or RDS)
-          To store the ratings, I used AWS DynamoDB as the database. DynamoDB is a serverless NoSQL database that integrates well with Lambda and is a good choice for small projects where I don’t want to manage traditional databases.
-          
-          DynamoDB: I created a DynamoDB table to store the ratings and set it up with basic read and write capacity. DynamoDB's free tier offers 25GB of storage, which is more than enough for the early stages of my project.
-          
-          RDS (optional): If I need to store data relationally, I could use Amazon RDS in the London region with MySQL or PostgreSQL, but for simplicity, DynamoDB was the better choice.
-          
-          Cost: DynamoDB’s free tier includes 25GB of storage and sufficient read/write capacity for small websites, so there will be no extra cost in the early months.
-          </li>
-          <br>
-          <li>Putting It All Together
-          Here’s a summary of how everything works together, with AWS services in the UK region (eu-west-2):
-          
-          Domain Name: Purchased and managed via Route 53 with SSL provided by AWS Certificate Manager.
-          
-          Static Website: Hosted on S3 in the London region with CloudFront for better performance.
-          
-          Backend: Form submissions handled by AWS Lambda and API Gateway.
-          
-          Database: DynamoDB (or RDS, if needed) to store the ratings.
-          </li>
-          <br>
-          <li>Estimated Monthly Costs
-          With the AWS Free Tier and low traffic expected, the estimated monthly costs will be very low, as most of the services will be covered by AWS’s free usage limits.
-          
-          S3 Hosting:
-          
-          Storage: ~£0.02 (for 10MB of files)
-          
-          Data Transfer: ~£1 (for a few hundred visitors)
-          
-          AWS Lambda (Backend): Likely free under the free tier (1 million requests/month).
-          
-          API Gateway: Likely free under the free tier (1 million requests/month).
-          
-          DynamoDB (Database): Likely free under the DynamoDB free tier (25GB storage).
-          
-          Domain Registration (Route 53): Around £8-£12/year for a .co.uk or .com domain (billed annually).
-          
-          Total Estimated Monthly Cost: Likely under £5/month for the first few months, potentially even close to £0 if your traffic remains very low and you stay within the free tier limits.
-          </li>
-          <br>
-          <li>Final Thoughts
-          This solution is cost-effective, scalable, and leverages AWS’s free tier, ensuring that the costs will remain minimal even as the website grows. The key advantages of hosting in the London (eu-west-2) region are:
-          
-          Lower latency for UK users.
-          
-          Compliance with GDPR and other UK data protection regulations.
-          
-          Scalability if traffic grows over time.
-          
-          By using Amazon S3 for static content, AWS Lambda + API Gateway for handling form submissions, and DynamoDB for storing ratings, I have a highly flexible and cost-efficient infrastructure.</li>
-          </ol>
-      </div><!-- End Section Title -->
+        <p>For this project, I built a simple website with a "Rate My Website" form, where users can submit ratings. Since I expect only a few hundred visitors in the first week, with significantly lower traffic afterwards, I opted for a cost-effective, scalable solution hosted on AWS in the UK region (London – eu-west-2) to ensure good performance for UK-based users and compliance with local regulations. Additionally, I integrated a CI/CD pipeline using GitHub's private repository to manage my code securely and automatically deploy updates to AWS.</p>
+        <br>
+        <p>Here’s the step-by-step breakdown:</p>
+        <ol>
+            <br>
+            <li>Buying a Domain Name
+                To give my website a professional and local feel, I purchased the domain Bradpearce.com. For this, I used AWS Route 53 as my domain registrar, which provided a seamless experience for managing DNS and connecting the domain to my AWS-hosted services.
+                
+                Domain Registration: I specifically chose the Bradpearce.com domain to establish a strong personal brand. The ".com" extension is globally recognised and trusted, which helps users find my site easily and enhances its credibility.
+                
+                DNS Management: AWS Route 53 made it simple to manage the DNS settings for my domain, ensuring that it worked perfectly with AWS-hosted services like S3 for static content and CloudFront for content delivery.
+                
+                SSL Certificates: I also used AWS Certificate Manager to provision an SSL certificate for Bradpearce.com, ensuring that my website is secure and trusted by users, particularly since I’m handling form submissions. This helps me maintain a secure connection for visitors, which is critical in building trust and compliance with security standards.
+            </li>
+            <br>
+            <li>Hosting Static Content with Amazon S3 (UK Region)
+                Since my website consists of static content (HTML, CSS, and JavaScript), I chose to host it on Amazon S3, which is both cost-effective and scalable for small to medium traffic websites.
+                
+                S3 Bucket Setup: I created an S3 bucket in the London region (eu-west-2) to host my static website files. I uploaded my HTML, CSS, and JavaScript files to the bucket and configured it to serve the website publicly.
+                
+                CloudFront (Optional): Although optional, I decided to use CloudFront to deliver my content globally. This ensures faster content delivery across the UK and Europe by caching files at edge locations closer to users.
+                
+                Cost: Hosting a small website (around 10MB) should cost under £1/month for S3 storage and data transfer, which is extremely affordable for the first few months.
+            </li>
+            <br>
+            <li>Handling Dynamic Features with AWS Lambda + API Gateway
+                For the "Rate My Website" feature, I needed a backend to handle form submissions (such as saving ratings to a database). Instead of running a traditional server (like EC2), I opted for AWS Lambda and API Gateway in the UK region (eu-west-2).
+                
+                AWS Lambda: I created a Lambda function to handle form submissions. This function processes ratings submitted by users (e.g., a 1-5 star rating) and stores them in a database.
+                
+                API Gateway: I set up API Gateway in the UK region to expose a RESTful endpoint that the front-end form can call to submit ratings to the Lambda function.
+                
+                Cost: Since my site expects only a few hundred form submissions, Lambda and API Gateway will most likely stay within the free tier of AWS, which includes 1 million requests per month for Lambda and 1 million requests per month for API Gateway. Therefore, the backend costs should be negligible for the first few months.
+            </li>
+            <br>
+            <li>Storing Form Submissions in a Database (DynamoDB or RDS)
+                To store the ratings, I used AWS DynamoDB as the database. DynamoDB is a serverless NoSQL database that integrates well with Lambda and is a good choice for small projects where I don’t want to manage traditional databases.
+                
+                DynamoDB: I created a DynamoDB table to store the ratings and set it up with basic read and write capacity. DynamoDB's free tier offers 25GB of storage, which is more than enough for the early stages of my project.
+                
+                RDS (optional): If I need to store data relationally, I could use Amazon RDS in the London region with MySQL or PostgreSQL, but for simplicity, DynamoDB was the better choice.
+                
+                Cost: DynamoDB’s free tier includes 25GB of storage and sufficient read/write capacity for small websites, so there will be no extra cost in the early months.
+            </li>
+            <br>
+            <li>Adding CI/CD with GitHub
+                I wanted to streamline the process of deploying my updates, so I set up a CI/CD pipeline using GitHub Actions with a private GitHub repository. Every time I make changes to my code, GitHub Actions automatically deploys the updates to AWS.
+                
+                This ensures that my code is secure, and I don’t need to manually manage deployments. It also allows me to focus more on development rather than worrying about the deployment process.
+            </li>
+            <br>
+            <li>Putting It All Together
+                Here’s a summary of how everything works together, with AWS services in the UK region (eu-west-2):
+                
+                Domain Name: Purchased and managed via Route 53 with SSL provided by AWS Certificate Manager for Bradpearce.com.
+                
+                Static Website: Hosted on S3 in the London region with CloudFront for better performance.
+                
+                Backend: Form submissions handled by AWS Lambda and API Gateway.
+                
+                Database: DynamoDB (or RDS, if needed) to store the ratings.
+                
+                CI/CD: Code deployed automatically via GitHub Actions using a private GitHub repository.
+            </li>
+            <br>
+            <li>Estimated Monthly Costs
+                With the AWS Free Tier and low traffic expected, the estimated monthly costs will be very low, as most of the services will be covered by AWS’s free usage limits.
+                
+                S3 Hosting:
+                
+                Storage: ~£0.02 (for 10MB of files)
+                
+                Data Transfer: ~£1 (for a few hundred visitors)
+                
+                AWS Lambda (Backend): Likely free under the free tier (1 million requests/month).
+                
+                API Gateway: Likely free under the free tier (1 million requests/month).
+                
+                DynamoDB (Database): Likely free under the DynamoDB free tier (25GB storage).
+                
+                Domain Registration (Route 53): Around £8-£12/year for Bradpearce.com (billed annually).
+                
+                GitHub: Free for public repositories, but private repositories may have associated costs for advanced CI/CD setups if scaling.
+                
+                Total Estimated Monthly Cost: Likely under £5/month for the first few months, potentially even close to £0 if your traffic remains very low and you stay within the free tier limits.
+            </li>
+            <br>
+            <li>Final Thoughts
+                This solution is cost-effective, scalable, and leverages AWS’s free tier, ensuring that the costs will remain minimal even as the website grows. The key advantages of hosting in the London (eu-west-2) region are:
+                
+                Lower latency for UK users.
+                
+                Compliance with GDPR and other UK data protection regulations.
+                
+                Scalability if traffic grows over time.
+                
+                By using Amazon S3 for static content, AWS Lambda + API Gateway for handling form submissions, DynamoDB for storing ratings, and GitHub Actions for CI/CD, I have a highly flexible and cost-efficient infrastructure.
+            </li>
+        </ol>
+    </div>
+    
+    <!-- End Section Title -->
 
     </section><!-- /Portfolio Section -->
 
