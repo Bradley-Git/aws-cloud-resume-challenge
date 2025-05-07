@@ -213,12 +213,6 @@ h6 {
   }
 }
 
-@media (max-width: 1199px) {
-  .header {
-    left: -100%;
-  }
-}
-
 .header.header-show {
   left: 0;
 }
