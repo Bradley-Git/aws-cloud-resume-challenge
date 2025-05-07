@@ -246,6 +246,34 @@ h6 {
   background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
 }
 
+/* Original styles for small screen navigation */
+
+
+  /* Show the menu when the 'show' class is added */
+  #navmenu.show {
+    transform: translateX(0);
+  }
+
+  /* Style the mobile toggle button */
+  .header-toggle {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: red;
+    color: white;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
