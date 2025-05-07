@@ -224,7 +224,7 @@ h6 {
 }
 
 .header .header-toggle {
-  color: white;
+  color: var(--contrast-color);
   background-color: var(--accent-color);
   font-size: 22px;
   display: flex;
@@ -252,9 +252,7 @@ h6 {
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
-.mobile-nav-toggle {
-  display: none;
-}
+
 
 .navmenu {
   padding: 0;
