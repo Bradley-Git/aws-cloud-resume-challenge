@@ -223,28 +223,34 @@ h6 {
   left: 0;
 }
 
-.header .header-toggle {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-  transition: background-color 0.3s;
+@media (max-width: 1199.98px) {
+  #navmenu {
+    /* unchanged */
+  }
+
+  .header-toggle {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .header-toggle:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+  }
 }
 
-.header .header-toggle:hover {
-  color: var(--contrast-color);
-  background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
-}
 
 /* Original styles for small screen navigation */
 
