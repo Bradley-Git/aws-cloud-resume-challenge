@@ -280,11 +280,11 @@
             <br>
             <li>Hosting Static Content with Amazon S3 (UK Region)
                 Since my website consists of static content (HTML, CSS, and JavaScript), I chose to host it on Amazon S3, which is both cost-effective and scalable for small to medium traffic websites.
-                
-                S3 Bucket Setup: I created an S3 bucket in the London region (eu-west-2) to host my static website files. I uploaded my HTML, CSS, and JavaScript files to the bucket and configured it to serve the website publicly.
-                
+
+                S3 Bucket Setup: I created an S3 bucket in the London region (eu-west-2) to host my static website files. I uploaded my HTML, CSS, and JavaScript files to the bucket and configured it to serve the website publicly. To ensure data security and compliance with best practices, I enabled server-side encryption using AWS Key Management Service (KMS), which encrypts content at rest with keys managed by AWS.
+              
                 CloudFront (Optional): Although optional, I decided to use CloudFront to deliver my content globally. This ensures faster content delivery across the UK and Europe by caching files at edge locations closer to users.
-                
+              
                 Cost: Hosting a small website (around 10MB) should cost under £1/month for S3 storage and data transfer, which is extremely affordable for the first few months.
             </li>
             <br>
@@ -380,7 +380,7 @@
     
       <!-- Photo under the title -->
       <div class="container" data-aos="fade-up" data-aos-delay="200">
-        <img src="assets/img/cloudresumearchitecture.png" alt="Architecture Image" class="architecture-image">
+        <img src="assets/img/AwsCloudResumeChallengeImage.drawio.png" alt="Architecture Image" class="architecture-image">
       </div>
     
     </section>
