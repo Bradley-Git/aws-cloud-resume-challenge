@@ -13,19 +13,32 @@
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
-  const navMenu = document.getElementById('navmenu');
-  
+
   function headerToggle() {
-    navMenu.classList.toggle('show');
-    document.body.classList.toggle('header-show');
+    document.querySelector('#header').classList.toggle('header-show');
     headerToggleBtn.classList.toggle('bi-list');
     headerToggleBtn.classList.toggle('bi-x');
   }
 
-  if (headerToggleBtn) {
-    headerToggleBtn.addEventListener('click', headerToggle);
-  }
+  
 
+
+
+  /**
+   * Hide mobile nav on same-page/hash links
+   */
+  const navMenu = document.getElementById('navmenu');
+  const toggleBtn = document.querySelector('.header-toggle');
+  
+  function headerToggle() {
+    navMenu.classList.toggle('show');
+    document.body.classList.toggle('header-show');
+  }
+  
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', headerToggle);
+  }
+  
   // Close mobile menu when a nav link is clicked
   document.querySelectorAll('#navmenu a').forEach(navLink => {
     navLink.addEventListener('click', () => {
@@ -46,6 +59,8 @@
       e.stopImmediatePropagation();
     });
   });
+
+  
 
   /**
    * Preloader
@@ -229,7 +244,6 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
-
 
 const counter = document.querySelector(".counter-number");
 async function updateCounter() {
