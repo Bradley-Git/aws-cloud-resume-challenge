@@ -6,45 +6,38 @@
 * License: https://bootstrapmade.com/license/
 */
 
-(function() {
+(function () {
   "use strict";
 
   /**
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
+  const navMenu = document.getElementById('navmenu');
 
   function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
+    // Toggle menu visibility
+    document.body.classList.toggle('header-show');
+    navMenu.classList.toggle('show');
+
+    // Toggle icon
     headerToggleBtn.classList.toggle('bi-list');
     headerToggleBtn.classList.toggle('bi-x');
   }
-  headerToggleBtn.addEventListener('click', headerToggle);
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  const navMenu = document.getElementById('navmenu');
-  const toggleBtn = document.querySelector('.header-toggle');
-  
-  function headerToggle() {
-    navMenu.classList.toggle('show');
-    document.body.classList.toggle('header-show');
+  if (headerToggleBtn) {
+    headerToggleBtn.addEventListener('click', headerToggle);
   }
-  
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', headerToggle);
-  }
-  
+
   // Close mobile menu when a nav link is clicked
   document.querySelectorAll('#navmenu a').forEach(navLink => {
     navLink.addEventListener('click', () => {
       if (document.body.classList.contains('header-show')) {
-        headerToggle();
+        headerToggle(); // This will also revert the icon
       }
     });
   });
-  
+
   /**
    * Toggle mobile nav dropdowns
    */
@@ -77,13 +70,16 @@
       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
     }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
-  });
+  }
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
@@ -130,7 +126,7 @@
     new Waypoint({
       element: item,
       offset: '80%',
-      handler: function(direction) {
+      handler: function () {
         let progress = item.querySelectorAll('.progress .progress-bar');
         progress.forEach(el => {
           el.style.width = el.getAttribute('aria-valuenow') + '%';
@@ -149,13 +145,13 @@
   /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+  document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
     let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
+    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function () {
       initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
         itemSelector: '.isotope-item',
         layoutMode: layout,
@@ -164,8 +160,8 @@
       });
     });
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function (filters) {
+      filters.addEventListener('click', function () {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
         initIsotope.arrange({
@@ -176,14 +172,13 @@
         }
       }, false);
     });
-
   });
 
   /**
    * Init swiper sliders
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
         swiperElement.querySelector(".swiper-config").innerHTML.trim()
       );
@@ -201,7 +196,7 @@
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
-  window.addEventListener('load', function(e) {
+  window.addEventListener('load', function () {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
         setTimeout(() => {
@@ -233,12 +228,14 @@
       } else {
         navmenulink.classList.remove('active');
       }
-    })
+    });
   }
+
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
 
 const counter = document.querySelector(".counter-number");
 async function updateCounter() {
