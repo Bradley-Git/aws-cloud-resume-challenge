@@ -13,27 +13,19 @@
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
-
-  function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
-    headerToggleBtn.classList.toggle('bi-list');
-    headerToggleBtn.classList.toggle('bi-x');
-  }
-
-  
-
   const navMenu = document.getElementById('navmenu');
-  const toggleBtn = document.querySelector('.header-toggle');
   
   function headerToggle() {
     navMenu.classList.toggle('show');
     document.body.classList.toggle('header-show');
+    headerToggleBtn.classList.toggle('bi-list');
+    headerToggleBtn.classList.toggle('bi-x');
   }
-  
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', headerToggle);
+
+  if (headerToggleBtn) {
+    headerToggleBtn.addEventListener('click', headerToggle);
   }
-  
+
   // Close mobile menu when a nav link is clicked
   document.querySelectorAll('#navmenu a').forEach(navLink => {
     navLink.addEventListener('click', () => {
@@ -54,21 +46,6 @@
       e.stopImmediatePropagation();
     });
   });
-  
-  
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(toggle => {
-    toggle.addEventListener('click', function (e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
-
-  
 
   /**
    * Preloader
@@ -252,6 +229,7 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
 
 const counter = document.querySelector(".counter-number");
 async function updateCounter() {
