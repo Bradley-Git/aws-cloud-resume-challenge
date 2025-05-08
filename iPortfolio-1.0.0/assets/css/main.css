@@ -237,7 +237,7 @@ h6 {
   position: fixed;
   top: 15px;
   right: 15px;
-  z-index: 9999;
+  z-index: 10000;
   transition: background-color 0.3s;
 }
 
@@ -245,6 +245,13 @@ h6 {
   color: var(--contrast-color);
   background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
 }
+
+img[src*="nat-pDprt9eF8zE-unsplash.jpg"] {
+  pointer-events: none;
+  z-index: 1;
+  position: relative;
+}
+
 
 /* Original styles for small screen navigation */
 
@@ -1295,25 +1302,3 @@ section,
 # Starter Section Section
 --------------------------------------------------------------*/
 
-.header .header-toggle {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-  transition: background-color 0.3s;
-}
-
-.header .header-toggle:hover {
-  color: var(--contrast-color);
-  background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
-}
