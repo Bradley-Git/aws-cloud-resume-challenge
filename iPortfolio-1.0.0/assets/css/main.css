@@ -247,6 +247,10 @@ h6 {
   background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
 }
 
+#navmenu.show {
+  transform: translateX(0);
+}
+
 /* Original styles for small screen navigation */
 
 
