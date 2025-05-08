@@ -12,47 +12,79 @@
   /**
    * Header toggle
    */
-  document.addEventListener('DOMContentLoaded', function () {
-    const headerToggleBtn = document.querySelector('.header-toggle');
-  
-    if (headerToggleBtn) {
-      // Make the toggle button visible (in case it's hidden via JS or inline CSS)
-      headerToggleBtn.style.display = 'flex';
-  
-      function headerToggle() {
-        document.querySelector('#header').classList.toggle('header-show');
-        headerToggleBtn.classList.toggle('bi-list');
-        headerToggleBtn.classList.toggle('bi-x');
+  const headerToggleBtn = document.querySelector('.header-toggle');
+
+  function headerToggle() {
+    document.querySelector('#header').classList.toggle('header-show');
+    headerToggleBtn.classList.toggle('bi-list');
+    headerToggleBtn.classList.toggle('bi-x');
+  }
+  headerToggleBtn.addEventListener('click', headerToggle);
+
+  /**
+   * Hide mobile nav on same-page/hash links
+   */
+  document.querySelectorAll('#navmenu a').forEach(navmenu => {
+    navmenu.addEventListener('click', () => {
+      if (document.querySelector('.header-show')) {
+        headerToggle();
       }
+    });
+
+  });
+
+  /**
+   * Toggle mobile nav dropdowns
+   */
+  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+    navmenu.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.parentNode.classList.toggle('active');
+      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      e.stopImmediatePropagation();
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const navMenu = document.getElementById('navmenu');
+    const toggleBtn = document.querySelector('.header-toggle');
   
-      headerToggleBtn.addEventListener('click', headerToggle);
+    function headerToggle() {
+      navMenu.classList.toggle('show');
+      document.body.classList.toggle('header-show');
   
-      /**
-       * Hide mobile nav on same-page/hash links
-       */
-      document.querySelectorAll('#navmenu a').forEach(navmenu => {
-        navmenu.addEventListener('click', () => {
-          if (document.querySelector('.header-show')) {
-            headerToggle();
-          }
-        });
-      });
-  
-      /**
-       * Toggle mobile nav dropdowns
-       */
-      document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-        navmenu.addEventListener('click', function (e) {
-          e.preventDefault();
-          this.parentNode.classList.toggle('active');
-          this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-          e.stopImmediatePropagation();
-        });
-      });
-  
-    } else {
-      console.warn('No .header-toggle element found in the DOM.');
+      // Toggle icon classes
+      if (toggleBtn) {
+        toggleBtn.classList.toggle('bi-list');
+        toggleBtn.classList.toggle('bi-x');
+      }
     }
+  
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', headerToggle);
+    }
+  
+    // Close mobile menu when a nav link is clicked
+    document.querySelectorAll('#navmenu a').forEach(navLink => {
+      navLink.addEventListener('click', () => {
+        if (document.body.classList.contains('header-show')) {
+          headerToggle();
+        }
+      });
+    });
+  
+    // Toggle mobile nav dropdowns
+    document.querySelectorAll('.navmenu .toggle-dropdown').forEach(toggle => {
+      toggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        this.parentNode.classList.toggle('active');
+        const nextDropdown = this.parentNode.nextElementSibling;
+        if (nextDropdown) {
+          nextDropdown.classList.toggle('dropdown-active');
+        }
+        e.stopImmediatePropagation();
+      });
+    });
   });
   
 
