@@ -24,32 +24,20 @@
   /**
    * Hide mobile nav on same-page/hash links
    */
-  const navMenu = document.getElementById('navmenu');
-  const toggleBtn = document.querySelector('.header-toggle');
-  
-  function headerToggle() {
-    navMenu.classList.toggle('show');
-    document.body.classList.toggle('header-show');
-  }
-  
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', headerToggle);
-  }
-  
-  // Close mobile menu when a nav link is clicked
-  document.querySelectorAll('#navmenu a').forEach(navLink => {
-    navLink.addEventListener('click', () => {
-      if (document.body.classList.contains('header-show')) {
+  document.querySelectorAll('#navmenu a').forEach(navmenu => {
+    navmenu.addEventListener('click', () => {
+      if (document.querySelector('.header-show')) {
         headerToggle();
       }
     });
+
   });
-  
+
   /**
    * Toggle mobile nav dropdowns
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(toggle => {
-    toggle.addEventListener('click', function (e) {
+  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+    navmenu.addEventListener('click', function(e) {
       e.preventDefault();
       this.parentNode.classList.toggle('active');
       this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
