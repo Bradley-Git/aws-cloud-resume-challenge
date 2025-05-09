@@ -159,6 +159,61 @@ h6 {
 }
 
 /* Show navmenu on mobile when .show is added */
+
+/* Ensure that the profile image stays in a circle and doesn't stretch */
+
+
+/* Social links container */
+/* Social links container: Ensure that icons stay in place and don't expand */
+.social-links {
+  display: flex;  /* Arrange icons in a row */
+  justify-content: center;  /* Center them horizontally */
+  align-items: center;  /* Align icons vertically */
+  gap: 10px;  /* Add space between icons */
+  flex-wrap: nowrap;  /* Prevent wrapping */
+  width: auto;  /* Ensure no fixed width is applied to the container */
+}
+
+/* Social icon styling: Ensure icons remain within a fixed size and keep background */
+.social-links a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;  /* Fixed width */
+  height: 40px;  /* Fixed height */
+  border-radius: 50%;  /* Make them circular */
+  background-color: var(--background-color);  /* Keep the original background color */
+  color: var(--default-color);  /* Icon color */
+  font-size: 16px;  /* Icon size */
+  transition: transform 0.3s ease-in-out;  /* Smooth scaling effect */
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;  /* Prevents unwanted scaling or padding */
+  margin: 0;  /* Remove any extra margin */
+  padding: 0;  /* Remove any extra padding */
+  background: color-mix(in srgb, var(--default-color), transparent 90%);  /* Keep background effect */
+}
+
+/* On hover: Scale the icons slightly */
+.social-links a:hover {
+  transform: scale(1.1);  /* Slightly increase size on hover */
+}
+
+/* Profile image styling: Ensure the profile image stays within bounds */
+.header .profile-img img {
+  margin: 15px auto;
+  display: block;
+  width: 120px;  /* Fixed size for the image */
+  border: 8px solid color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+/* Prevent icons from growing or expanding in odd ways */
+.social-links a {
+  flex: 0 0 40px;  /* Don't allow the icons to grow or shrink */
+  width: 40px;  /* Fixed size */
+  height: 40px;  /* Fixed size */
+}
+
 #navmenu.show {
   left: 0;
 }
