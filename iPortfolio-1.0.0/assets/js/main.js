@@ -255,7 +255,6 @@ updateCounter();
 
 
 
-
 // Get your API Gateway URLs and replace these
 const SUBMIT_RATING_ENDPOINT = 'https://rspir8do74.execute-api.eu-west-2.amazonaws.com/submit-rating';
 const GET_AVERAGE_ENDPOINT = 'https://rspir8do74.execute-api.eu-west-2.amazonaws.com/get-average';
