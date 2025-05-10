@@ -239,7 +239,7 @@
 
 const counter = document.querySelector(".counter-number");
 async function updateCounter() {
-  let response = await fetch("https://am0zs63wzg.execute-api.eu-west-2.amazonaws.com/get-views");
+  let response = await fetch("https://dhgm1iumah.execute-api.eu-west-2.amazonaws.com/get-views");
   let data = await response.json();
   counter.innerHTML = `Views: ${data}`;
 }
@@ -257,8 +257,8 @@ updateCounter();
 
 
 // Get your API Gateway URLs and replace these
-const SUBMIT_RATING_ENDPOINT = 'https://am0zs63wzg.execute-api.eu-west-2.amazonaws.com/submit-rating';
-const GET_AVERAGE_ENDPOINT = 'https://am0zs63wzg.execute-api.eu-west-2.amazonaws.com/get-average';
+const SUBMIT_RATING_ENDPOINT = 'https://rspir8do74.execute-api.eu-west-2.amazonaws.com/submit-rating';
+const GET_AVERAGE_ENDPOINT = 'https://rspir8do74.execute-api.eu-west-2.amazonaws.com/get-average';
 
 document.addEventListener('DOMContentLoaded', function() {
     const ratingForm = document.getElementById('rating-form');
