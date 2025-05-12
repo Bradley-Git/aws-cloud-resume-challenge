@@ -8,33 +8,27 @@ on:
 permissions:
   id-token: write
   contents: read  # Required for OIDC authentication
-  
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Step 2: Set up AWS Credentials with OIDC (IAM role assumed via OIDC)
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: arn:aws:iam::430118836047:role/GithubOIDC  # Replace with actual Role ARN
+          role-to-assume: arn:aws:iam::430118836047:role/GithubOIDC
           aws-region: 'eu-west-2'
 
-      # Step 3: Sync site to S3 bucket
-      - name: Sync site to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl private --follow-symlinks --delete
+      - name: Sync site to S3 with AWS CLI
+        run: |
+          aws s3 sync iPortfolio-1.0.0 s3://$AWS_S3_BUCKET --acl private --delete
         env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}  # Ensure this secret is set in your GitHub repo
-          SOURCE_DIR: 'iPortfolio-1.0.0'  # Replace with your frontend directory
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
 
-      # Step 4: Invalidate CloudFront Cache after sync
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id E5CBP25AF87Q3 --paths "/*"
