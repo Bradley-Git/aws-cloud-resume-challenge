@@ -8,22 +8,31 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@master
-      - uses: jakejarvis/s3-sync-action@master
+      # Step 1: Checkout the repository
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # Step 2: Set up AWS Credentials with OIDC (IAM role assumed via OIDC)
+      - name: Configure AWS Credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::430118836047:role/GitHubActionsRole  # Replace with actual Role ARN
+          aws-region: 'eu-west-2'
+
+      # Step 3: Sync site to S3 bucket
+      - name: Sync site to S3
+        uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl private --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'eu-west-2'
-          SOURCE_DIR: 'iPortfolio-1.0.0'
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}  # Ensure this secret is set in your GitHub repo
+          SOURCE_DIR: 'iPortfolio-1.0.0'  # Replace with your frontend directory
 
+      # Step 4: Invalidate CloudFront Cache after sync
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation --distribution-id E5CBP25AF87Q3 --paths "/*"
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'eu-west-2'
