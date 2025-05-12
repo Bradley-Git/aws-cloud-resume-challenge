@@ -8,7 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read  # Required for OIDC authentication
-
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
