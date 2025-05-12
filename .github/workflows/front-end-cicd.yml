@@ -6,7 +6,8 @@ on:
       - main
 
 permissions:
-  id-token: write  # Required for OIDC authentication
+  id-token: write
+  contents: read  # Required for OIDC authentication
 
 jobs:
   deploy:
