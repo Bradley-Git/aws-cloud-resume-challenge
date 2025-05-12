@@ -21,7 +21,7 @@ jobs:
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: arn:aws:iam::430118836047:role/GitHubActionsRole  # Replace with actual Role ARN
+          role-to-assume: arn:aws:iam::430118836047:role/GithubOIDC  # Replace with actual Role ARN
           aws-region: 'eu-west-2'
 
       # Step 3: Sync site to S3 bucket
